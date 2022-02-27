@@ -1,0 +1,17 @@
+form{
+    max-width: 500px;
+}
+
+
+mat-form-field{
+    width: 100%;
+}
+
+button{
+    margin-right: 1rem;
+}
+
+
+.check{
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,26 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Ime*</mat-label>
+      <input formControlName="ime" matInput />
+      <mat-error>Morate unijeti ime</mat-error>
+    </mat-form-field>
+  
+   
+   <h4>Odaberite lokaciju kina</h4>
+ <div>
+    <app-map 
+    [initialCoordinates]="initialCoordinates"
+    (onSelectedLocation)="onSelectedLocation($event)"></app-map>
+
+ </div>
+
+
+  <div class="snimi">
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+     Snimi
+    </button>
+    <a mat-stroked-button routerLink="/kina">Odustani</a>
+  </div>
+</form>
+   
+ 

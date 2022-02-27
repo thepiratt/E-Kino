@@ -1,0 +1,74 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>*Naziv</mat-label>
+        <input formControlName="naziv" matInput />
+        <mat-error>Morate unijeti naziv filma</mat-error>
+    </mat-form-field>
+
+    <div class="check">
+        <mat-checkbox formControlName="prikazujeSe">U kinima</mat-checkbox>
+    </div>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Trailer</mat-label>
+        <input formControlName="trailer" matInput />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Odaberite datum</mat-label>
+        <input formControlName="datumIzalska" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <h4>Odaberite sliku</h4>
+      
+
+     
+      <app-input-img
+    [urlCurrentImage]="model?.poster"
+    (onImageSelected)="onImageSelected($event)"
+  ></app-input-img>
+     
+
+  <h4>Opis</h4>
+
+  <app-input-markdown
+    [markdownContent]="model?.opis"
+    [label]="'Opis'"
+    (changeMarkdown)="changeMarkdown($event)"
+  ></app-input-markdown>
+
+
+  <h4>Odaberite zanrove</h4>
+
+  <app-multiple-selector
+    [NonSelectedItems]="neOznaceniZanrovi"
+    [SelectedItems]="oznaceniZanrovi"
+  ></app-multiple-selector>
+
+  <h4>Odaberite kina</h4>
+
+  <app-multiple-selector
+    [NonSelectedItems]="neOznacenaKina"
+    [SelectedItems]="oznacenaKina"
+  ></app-multiple-selector>
+
+  <h4>Odaberite glumce</h4>
+
+  <app-glumci-odabir [oznaceniGlumci]="oznaceniGlumci"></app-glumci-odabir>
+
+   
+
+   <div>
+       <button mat-flat-button color="primary" [disabled]="form.invalid">Snimi</button>
+   </div>
+
+
+
+
+
+</form>
+
+

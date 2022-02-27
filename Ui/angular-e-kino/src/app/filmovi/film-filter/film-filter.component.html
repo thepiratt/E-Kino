@@ -1,0 +1,30 @@
+<h2>Pretrazi filmove</h2>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Ime</mat-label>
+            <input formControlName="title" matInput> 
+           
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zanr</mat-label>
+            <mat-select formControlName="zanrID">
+                <mat-option *ngFor="let zanrovi of zanrovi" [value]="zanrovi.id">{{zanrovi.name}}</mat-option>
+               
+            </mat-select>
+           
+        </mat-form-field>
+        <div>
+            <mat-checkbox formControlName="upcomingRealases">Uskoro izlaze</mat-checkbox>
+        </div>
+        <div>
+            <mat-checkbox formControlName="inTheaters">U kinima</mat-checkbox>
+        </div>
+        <div class="clear-container">
+            <button mat-flat-button (click)="cleanForm()" color="warn">Očisti formu</button>
+        </div>
+        
+
+        
+        </form> 

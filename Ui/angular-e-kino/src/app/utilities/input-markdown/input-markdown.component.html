@@ -1,0 +1,11 @@
+<mat-tab-group>
+    <mat-tab label="Uredi">
+        <mat-form-field appearance="fill" (change)="changeMarkdown.emit(getValue($event));">
+            <mat-label>{{label}}</mat-label>
+            <textarea [(ngModel)]="markdownContent" matInput></textarea>
+        </mat-form-field>
+    </mat-tab>
+    <mat-tab label="Pregled">
+        <markdown [data]="markdownContent" ngPreserveWhitespaces></markdown>
+    </mat-tab>
+</mat-tab-group>

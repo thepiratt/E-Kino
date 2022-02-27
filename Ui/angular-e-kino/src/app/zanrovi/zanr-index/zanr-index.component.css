@@ -1,0 +1,40 @@
+.napravi{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+.table-index{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+
+.table-index a{
+    margin-right: 1rem;
+}
+
+
+html {
+    font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  }
+  
+  thead th, tfoot th {
+    font-family: "Times New Roman", Times, serif;
+  }
+  
+  th {
+    letter-spacing: 2px;
+  }
+  
+  td {
+    letter-spacing: 1px;
+  }
+  
+  tbody td {
+    text-align: center;
+  }
+  
+  tfoot th {
+    text-align: right;
+  }

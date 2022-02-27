@@ -1,0 +1,30 @@
+<app-generic-list [list]="filmovi">
+    <ng-container content>
+      <div class="movies-container">
+        <div
+          *ngFor="let film of filmovi; let index = index"
+          class="movie-container"
+        >
+         <a [routerLink]="'/film/' + film.id">
+           <img [src]="film.poster" alt="Poster" />
+         </a>
+         <p>
+           <a [routerLink]="'/film/' + film.id">{{film.naziv}}</a>
+         </p>
+         <div>
+           <a [routerLink]="'/film/film-edit/' + film.id" mat-flat-button color="primary">
+            Edit
+           </a>
+           <button mat-flat-button color="warn" type="button"
+            [swal]="{title: 'Confirmation', text: 'Are you sure you want to delete this?',
+            showCancelButton: true}"
+            (confirm)="remove(film.id)"
+           >
+             Delete
+           </button>
+         </div>
+        </div>
+      </div>
+    </ng-container>
+  </app-generic-list>
+  

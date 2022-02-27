@@ -1,0 +1,49 @@
+<h2>Eventi</h2>
+
+<button mat-flat-button color="primary" routerLink="/eventi/dodaj">Dodaj Event</button>
+
+<app-generic-list [list]="event">
+    <ng-container content>
+        <table mat-table [dataSource]="event" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>id</th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+
+            </ng-container>
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef>Naziv</th>
+                <td mat-cell *matCellDef="let element">{{element.naziv}}</td>
+
+            </ng-container>
+            <ng-container matColumnDef="opis">
+                <th mat-header-cell *matHeaderCellDef>Naziv</th>
+                <td mat-cell *matCellDef="let element">{{element.opis}}</td>
+
+            </ng-container>
+<ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Akcije</th>
+    <td mat-cell *matCellDef="let element">
+        <a 
+        routerLink="/eventi/edit/{{element.id}}" 
+        mat-flat-button color="primary"
+        >Uredi</a>
+        <button mat-flat-button color="warn" [swal]="{
+            title:'Potvrda',
+            text:'Da li ste sigurni da želite izbrisati event?',
+            showCancelButton:true
+        }" (confirm)="delete(element.id)">
+            Obriši
+        </button>
+
+
+
+    </td>
+   
+
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+<tr mat-row *matRowDef="let row; columns:columnsToDisplay"></tr>
+</table>
+
+</ng-container>
+</app-generic-list>

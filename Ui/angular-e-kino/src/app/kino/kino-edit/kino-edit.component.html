@@ -1,0 +1,8 @@
+<h2>Uredi kino</h2>
+
+
+<app-kino-forma 
+*ngIf="model"
+[model]="model" (onSaveChanges)="saveChanges($event)"></app-kino-forma>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

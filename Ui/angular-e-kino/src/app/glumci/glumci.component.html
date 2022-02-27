@@ -1,0 +1,44 @@
+<h2>Glumci</h2>
+
+<button mat-flat-button color="primary" routerLink="/glumci/add">Dodaj glumca</button>
+
+
+
+
+<app-generic-list [list]="glumac">
+    <ng-container content>
+        <table mat-table [dataSource]="glumac" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="ime">
+                <th mat-header-cell *matHeaderCellDef>Ime</th>
+                <td mat-cell *matCellDef="let element">{{element.ime}}</td>
+
+            </ng-container>
+            <ng-container matColumnDef="datumRodjenja">
+                <th mat-header-cell *matHeaderCellDef>Datum rodjenja</th>
+                <td mat-cell *matCellDef="let element">{{element.datumRodjenja | date:'dd.MM.yyyy'}}</td>
+
+            </ng-container>
+<ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Opcije</th>
+    <td mat-cell *matCellDef="let element">
+        <a routerLink="/glumci/edit/{{element.id}}" mat-flat-button color="primary">Uredi</a>
+        <button mat-flat-button color="warn" [swal]="{
+            title:'Potvrda',
+            text:'Da li ste sigurni da želite izbrisati žanr?',
+            showCancelButton:true
+        }" (confirm)="delete(element.id)">
+            Obriši
+        </button>
+
+
+
+    </td>
+   
+
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+<tr mat-row *matRowDef="let row; columns:columnsToDisplay"></tr>
+        </table>
+
+    </ng-container>
+</app-generic-list>

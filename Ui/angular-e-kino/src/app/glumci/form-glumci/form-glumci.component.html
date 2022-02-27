@@ -1,0 +1,28 @@
+
+<form (ngSubmit)="saveChanges()" [formGroup]="form">
+<mat-form-field appearance="outline">
+    <mat-label>Ime*</mat-label>
+    <input formControlName="ime" matInput/>
+    <mat-error>Morate unijeti ime</mat-error>
+</mat-form-field>
+
+
+
+<mat-form-field appearance="outline">
+    <mat-label>Datum rođenja</mat-label>
+    <input formControlName="datumRodjenja" matInput [matDatepicker]="picker"/>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+<div>
+    <button mat-flat-button color="primary" [disabled]="form.invalid">Snimi</button>
+    <a mat-stroked-button routerLink="/glumci">Odustani</a>
+</div>
+</form>
+
+
+
+
+

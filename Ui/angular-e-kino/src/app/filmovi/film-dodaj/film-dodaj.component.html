@@ -1,0 +1,9 @@
+<h2>Dodaj film</h2>
+
+<app-forma-film 
+*ngIf="neOznaceniZanrovi"
+[neOznaceniZanrovi]="neOznaceniZanrovi"
+[neOznacenaKina]="neOznacenaKina"
+(onSaveChanges)="saveChanges($event)"></app-forma-film>
+
+ <mat-spinner *ngIf="!neOznaceniZanrovi"></mat-spinner>

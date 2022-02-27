@@ -1,0 +1,26 @@
+<form  (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Naziv*</mat-label>
+        <input formControlName="naziv" matInput> 
+        <mat-error *ngIf="form.invalid">{{getErrorMessageFieldName()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Opis</mat-label>
+        <input formControlName="opis" matInput />
+        <mat-error>Morate unijeti opis!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cijena</mat-label>
+        <input formControlName="cijena" matInput />
+        <mat-error>Morate unijeti cijenu!</mat-error>
+      </mat-form-field>
+
+
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Snimi</button>
+        <a mat-stroked-button routerLink="/artikli">Odustani</a>
+    </div>
+    </form>

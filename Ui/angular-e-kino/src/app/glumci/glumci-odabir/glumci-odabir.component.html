@@ -1,0 +1,60 @@
+<form>
+    <mat-form-field>
+        <input type="text"
+        placeholder="Odaberi glumca" 
+        matInput [formControl]="control"
+        [matAutocomplete]="auto"
+        />
+    </mat-form-field>
+    <mat-autocomplete #auto
+        (optionSelected)="optionSelected($event)"
+    >
+        <mat-option *ngFor="let glumac of glumciZaPrikaz" [value]="glumac">
+             {{glumac.ime}}
+        </mat-option>
+    </mat-autocomplete>
+</form>
+
+<table
+    mat-table
+    *ngIf="oznaceniGlumci.length > 0"
+    [dataSource]="oznaceniGlumci"
+    cdkDropList
+    [cdkDropListData]="oznaceniGlumci"
+    (cdkDropListDropped)="dropped($event)"
+   
+>
+
+   
+
+    <ng-container matColumnDef="ime">
+        <td mat-cell *matCellDef="let element">
+            {{element.ime}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="uloga">
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field appearance="outline" style="margin-top: 10px;">
+                <mat-label>Uloga</mat-label>
+                <input matInput [(ngModel)]="element.uloga" />
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <td mat-cell *matCellDef="let element">
+            <mat-icon mat-list-icon (click)="remove(element)">
+                close
+            </mat-icon>
+        </td>
+    </ng-container>
+
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay"
+    cdkDrag [cdkDragData]="row"
+></tr>
+
+
+    
+
+</table>
