@@ -18,6 +18,7 @@ import{MatProgressBarModule} from'@angular/material/progress-bar'
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import {MatChipsModule} from '@angular/material/chips'
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ MatCardModule,
 MatProgressBarModule,
 MatAutocompleteModule,
 DragDropModule,
-MatChipsModule
+MatChipsModule,
+LeafletModule
 ],
   imports: [
     CommonModule

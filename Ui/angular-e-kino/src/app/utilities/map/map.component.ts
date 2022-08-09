@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { latLng, LeafletMouseEvent, marker, Marker, tileLayer } from 'leaflet';
+import * as Mapboxgl from 'mapbox-gl';
+import { environment } from 'src/environments/environment';
 import { coordinatesMap,coordinatesMapWithMessage} from './coordinate';
+
+
 
 @Component({
   selector: 'app-map',
@@ -8,12 +12,31 @@ import { coordinatesMap,coordinatesMapWithMessage} from './coordinate';
   styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnInit {
+  map!:Mapboxgl.Map;
   constructor() {}
 
   ngOnInit(): void {
-   this.layers = this.initialCoordinates.map(value => marker([value.latitude,value.longitude]));
+    this.layers = this.initialCoordinates.map((value) => {
+      const m = marker([value.latitude, value.longitude]);
+     
+      return m;
+    });
+  
+
+ 
+
+
+
+  
       
   }
+  
+  
+  
+
+ 
+ 
+  
 
   @Input()
   initialCoordinates: coordinatesMap[] = [];
@@ -26,9 +49,13 @@ export class MapComponent implements OnInit {
 
   options = {
     layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         maxZoom: 18,
-        attribution: 'Angular E-Kino',
+        
+        id:'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+     accessToken:environment.mapboxKey
       }),
     ],
     zoom: 14,
@@ -38,7 +65,7 @@ export class MapComponent implements OnInit {
   layers: Marker<any>[] = [];
 
   handleMapClick(event: LeafletMouseEvent) {
-    //if (this.editMode){
+    if (this.editMode){
       const latitude = event.latlng.lat;
       const longitude = event.latlng.lng;
       console.log({ latitude, longitude });
@@ -46,5 +73,5 @@ export class MapComponent implements OnInit {
       this.layers.push(marker([latitude, longitude]));
       this.onSelectedLocation.emit({ latitude, longitude });
     }
- // }
+  }
 }

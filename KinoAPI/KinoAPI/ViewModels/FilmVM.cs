@@ -28,5 +28,7 @@ namespace KinoAPI.ViewModels
         public List<ZanrMV> Zanrovi { get; set; }
         public List<KinoVM> Kina { get; set; }
         public List<GlumacFilmVM> Glumci { get; set; }
+        public List<KinoProjekcijeVM> KinoProjekcije { get; set; }
+
     }
 }

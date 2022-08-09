@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { FilmService } from '../film.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FilmService } from '../film.service';
 })
 export class FilmListaComponent implements OnInit {
 
-  constructor(private filmService: FilmService) { }
+  constructor(private filmService: FilmService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +24,10 @@ export class FilmListaComponent implements OnInit {
   remove(id: number){
     this.filmService.delete(id).subscribe(() => {
       this.onDelete.emit();
+      let currentUrl = this.router.url;
+       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
     });
   }
 

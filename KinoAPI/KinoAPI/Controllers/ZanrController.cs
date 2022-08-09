@@ -2,6 +2,8 @@
 using KinoAPI.CreateModels;
 using KinoAPI.Entiteti;
 using KinoAPI.ModelViews;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,6 +18,7 @@ namespace KinoAPI.Controllers
 
     [Route("api/zanrovi")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "IsAdmin")]
     public class ZanrController : ControllerBase
     {
         private readonly ILogger<ZanrController> logger;
@@ -29,6 +32,7 @@ namespace KinoAPI.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<ZanrMV>>> Get()
         {
             logger.LogInformation("Povlacenje svih zanrova");

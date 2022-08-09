@@ -3,23 +3,47 @@
     <form [formGroup]="form">
         <mat-form-field appearance="outline">
             <mat-label>Ime</mat-label>
-            <input formControlName="title" matInput> 
+            <input formControlName="naslov" matInput> 
            
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Zanr</mat-label>
-            <mat-select formControlName="zanrID">
-                <mat-option *ngFor="let zanrovi of zanrovi" [value]="zanrovi.id">{{zanrovi.name}}</mat-option>
+            <mat-select formControlName="zanrId">
+                <mat-option *ngFor="let x of zanrovi" [value]="x.id">{{x.name}}</mat-option>
                
             </mat-select>
            
         </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Odaberite dan</mat-label>
+            <mat-select formControlName="dan">
+                <mat-option value="Ponedeljak" >Ponedeljak</mat-option>
+                <mat-option value="Utorak">Utorak</mat-option>
+                <mat-option value="Srijeda">Srijeda</mat-option>
+                <mat-option value="Četvrtak">Četvrtak</mat-option>
+                <mat-option value="Petak">Petak</mat-option>
+                <mat-option value="Subota">Subota</mat-option>
+                <mat-option value="Nedelja">Nedelja</mat-option>
+            </mat-select>
+           
+        </mat-form-field>  
+
+
+         <!--    <mat-form-field appearance="outline">
+        <button mat-flat-button color="primary" formControlName="dan" onclick="Ponedeljak()">Pon</button>
+
+       </mat-form-field> -->
+
+       
+
+       
+    
         <div>
-            <mat-checkbox formControlName="upcomingRealases">Uskoro izlaze</mat-checkbox>
+            <mat-checkbox formControlName="uskoro_se_prikazuje">Uskoro izlaze</mat-checkbox>
         </div>
         <div>
-            <mat-checkbox formControlName="inTheaters">U kinima</mat-checkbox>
+            <mat-checkbox formControlName="prikazuje_Se">U kinima</mat-checkbox>
         </div>
         <div class="clear-container">
             <button mat-flat-button (click)="cleanForm()" color="warn">Očisti formu</button>
@@ -28,3 +52,9 @@
 
         
         </form> 
+      
+
+        <app-film-lista [filmovi]="filmovi" ></app-film-lista>
+
+    
+

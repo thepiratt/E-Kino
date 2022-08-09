@@ -1,4 +1,5 @@
-﻿using KinoAPI.Helpers;
+﻿using KinoAPI.Entities;
+using KinoAPI.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,5 +29,8 @@ namespace KinoAPI.CreateModels
         public List<int> Kina { get; set; }
         [ModelBinder(BinderType = typeof(TypeBinder<List<FilmGlumciCreateModel>>))]
         public List<FilmGlumciCreateModel> Glumci { get; set; }
+
+        [ModelBinder(BinderType = typeof(TypeBinder<List<int>>))]
+        public List<int> KinoProjekcije { get; set; }
     }
 }

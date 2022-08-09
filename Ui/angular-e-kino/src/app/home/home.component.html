@@ -1,9 +1,16 @@
-<h2>In Theaters</h2>
+<div class="lista" >
 
+<h2>Trenutno se prikazuju</h2>
+
+<div style="margin: 10px;">
 <app-film-lista (onDelete)="onDelete()" [filmovi]="moviesInTheaters"></app-film-lista>
 
-<h2>Future Releases</h2>
+</div>
 
+<h2>Uskoro u kinima</h2>
+<div style="margin: 10px;">
 <app-film-lista (onDelete)="onDelete()" [filmovi]="moviesFutureReleases"></app-film-lista>
+</div>
+</div>
 
  

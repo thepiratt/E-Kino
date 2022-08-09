@@ -4,6 +4,8 @@ using KinoAPI.Helpers;
 using KinoAPI.Models;
 using KinoAPI.ModelViews;
 using KinoAPI.ViewModels;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,6 +19,7 @@ namespace KinoAPI.Controllers
 {
     [Route("api/glumci")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Policy = "IsAdmin")]
     public class GlumacController : ControllerBase
     {
         private readonly ILogger<GlumacController> logger;

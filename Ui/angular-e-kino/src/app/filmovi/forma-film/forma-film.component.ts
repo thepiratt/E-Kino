@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { glumciFilmDTO } from 'src/app/glumci/glumacCreationModel';
+import { projekcijaCreateDTO, projekcijaDTO } from 'src/app/projekcija/projekcija-model';
 import { ImageServiceService } from 'src/app/service/image-service.service';
 import { multipleSelectorModel } from 'src/app/utilities/multiple-selector/multiple-selector-model';
 import { toBase64 } from 'src/app/utilities/utils';
@@ -35,6 +36,8 @@ export class FormaFilmComponent implements OnInit {
   @Input()
   neOznaceniZanrovi: multipleSelectorModel[] = [];
 
+ 
+
   @Input()
   oznaceniZanrovi: multipleSelectorModel[] = [];
 
@@ -46,6 +49,12 @@ export class FormaFilmComponent implements OnInit {
 
   @Input()
   oznaceniGlumci: glumciFilmDTO[] = [];
+
+
+  @Input()
+  neOznaceniTermini: multipleSelectorModel[] = [];
+  @Input()
+  oznaceniTermini: multipleSelectorModel[] = [];
 
 
   ngOnInit(): void {
@@ -60,7 +69,8 @@ export class FormaFilmComponent implements OnInit {
       poster: '',
       zanrovi: '',
       kina: '',
-      glumci: ''
+      glumci: '',
+      kinoProjekcije:'',
     });
 
     if (this.model !== undefined) {
@@ -93,6 +103,9 @@ export class FormaFilmComponent implements OnInit {
       return { id: val.id, uloga: val.uloga }
     });
     this.form.get('glumci').setValue(glumci);
+
+    const kinoProjekcije = this.oznaceniTermini.map(value => value.key);
+    this.form.get('kinoProjekcije').setValue(kinoProjekcije);
 
     this.onSaveChanges.emit(this.form.value);
   }

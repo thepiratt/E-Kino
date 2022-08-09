@@ -1,4 +1,14 @@
 <h2>Uredite film</h2>
 
 
-<app-forma-film  (onSaveChanges)="saveChanges($event)"></app-forma-film>
+<app-forma-film  
+[model]="model" 
+*ngIf="model"
+[neOznaceniZanrovi]="neOdabraniZanrovi"
+[oznaceniZanrovi]="odabraniZanrovi"
+[neOznacenaKina]="neOdabranaKina"
+[oznacenaKina]="odabranaKina"
+[neOznaceniTermini]="neOdabraneKinoProjekcije"
+[oznaceniTermini]="odabraneKinoProjekcije"
+[oznaceniGlumci]="odabraniGlumci"
+(onSaveChanges)="saveChanges($event)"></app-forma-film>

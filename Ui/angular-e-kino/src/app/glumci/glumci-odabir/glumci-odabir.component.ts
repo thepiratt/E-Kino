@@ -62,4 +62,6 @@ export class GlumciOdabirComponent implements OnInit {
     this.table.renderRows();
   }
 
+  
+
 }

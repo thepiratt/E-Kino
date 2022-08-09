@@ -12,16 +12,25 @@
            <a [routerLink]="'/film/' + film.id">{{film.naziv}}</a>
          </p>
          <div>
-           <a [routerLink]="'/film/film-edit/' + film.id" mat-flat-button color="primary">
-            Edit
-           </a>
-           <button mat-flat-button color="warn" type="button"
+          <button mat-flat-button color="primary" type="button">Rezervacija</button>
+         <app-autorizacija-pregled [role]="'admin'">
+          <ng-container authorized>
+            <button mat-flat-button color="warn" type="button"
             [swal]="{title: 'Confirmation', text: 'Are you sure you want to delete this?',
             showCancelButton: true}"
             (confirm)="remove(film.id)"
            >
-             Delete
+             Izbriši
            </button>
+      
+          </ng-container>
+      
+          
+      </app-autorizacija-pregled>
+
+       
+           
+         
          </div>
         </div>
       </div>

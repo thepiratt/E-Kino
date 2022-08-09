@@ -1,0 +1,27 @@
+.lista {
+    margin: auto;
+    width: 100%;
+   
+    padding: 10px;
+    display: block;
+    margin-left: 265px;
+   background-image: url("/src/app/webKino.jpg");
+  
+   
+  }
+
+  h2 {
+   
+    margin: auto;
+    width: 50%;
+    font-family:fantasy;
+   
+    padding: 10px;
+    display: block;
+    margin-right: 150px;
+ 
+  }
+  
+  
+  
+ 

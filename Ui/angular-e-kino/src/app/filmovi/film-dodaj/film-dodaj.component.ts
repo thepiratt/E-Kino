@@ -15,6 +15,7 @@ export class FilmDodajComponent implements OnInit {
   
   neOznaceniZanrovi!: multipleSelectorModel[];
   neOznacenaKina!: multipleSelectorModel[];
+  neOznaceniTermini!:multipleSelectorModel[];
 
   ngOnInit(): void {
     this.filmServis.postGet().subscribe(data=>{
@@ -26,6 +27,12 @@ export class FilmDodajComponent implements OnInit {
       this.neOznacenaKina = data.kina.map(kino => {
         return <multipleSelectorModel>{key: kino.id, value: kino.ime}
       });
+
+      this.neOznaceniTermini = data.kinoProjekcije.map(kinoprojekcije => {
+        return <multipleSelectorModel>{key: kinoprojekcije.id, value: `${kinoprojekcije.dan}: ${kinoprojekcije.termin}h`}
+      });
+
+
 
 
     });

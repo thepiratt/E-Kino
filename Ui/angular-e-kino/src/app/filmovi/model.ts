@@ -1,5 +1,6 @@
 import { glumacDTO, glumciFilmDTO } from "../glumci/glumacCreationModel";
 import { kinoDTO } from "../kino/kino-forma/kino-model";
+import { projekcijaDTO } from "../projekcija/projekcija-model";
 import { zanrDTO } from "../zanrovi/zanr.model";
 
 export interface filmCreationDTO{
@@ -12,6 +13,7 @@ export interface filmCreationDTO{
     zanrovi: number[],
     kina: number[],
     glumci: glumciFilmDTO[];
+    kinoProjekcije:number[];
     
     }
 export interface filmDTO{
@@ -25,6 +27,7 @@ export interface filmDTO{
     zanrovi: zanrDTO[],
     kina: kinoDTO[],
     glumci: glumciFilmDTO[];
+    kinoProjekcije:projekcijaDTO[];
 
        
 }
@@ -33,6 +36,7 @@ export interface filmDTO{
 export interface filmPostGetDTO{
    zanrovi: zanrDTO[];
    kina: kinoDTO[];
+   kinoProjekcije:projekcijaDTO[];
        
 }
 
@@ -43,6 +47,8 @@ export interface FilmPutGetDTO {
     odabranaKina: kinoDTO[];
     neOdabranaKina: kinoDTO[];
     glumci: glumciFilmDTO[];
+    odabraneKinoProjekcije:projekcijaDTO[];
+    neOdabraneKinoProjekcije:projekcijaDTO[];
 }
 
 export interface homeDTO {

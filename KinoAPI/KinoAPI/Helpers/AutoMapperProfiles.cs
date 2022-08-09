@@ -20,6 +20,8 @@ namespace KinoAPI.Helpers
         {
             CreateMap<ZanrMV, Zanr>().ReverseMap();
             CreateMap<ZanrCreateModel, Zanr>();
+            CreateMap<KinoProjekcijeVM, KinoProjekcija>().ReverseMap();
+            CreateMap<KinoProjekcijaCreateModel, KinoProjekcija>();
 
             CreateMap<EventVM, Event>().ReverseMap();
             CreateMap<EventCreateModel, Event>();
@@ -41,11 +43,13 @@ namespace KinoAPI.Helpers
                 .ForMember(x => x.Poster, options => options.Ignore())
                 .ForMember(x => x.FilmZanr, options => options.MapFrom(MapFilmZanr))
                 .ForMember(x=>x.FilmKino,options=>options.MapFrom(MapFilmKino))
+                .ForMember(x=>x.FilmKinoProjekcija,options=>options.MapFrom(MapFilmKinoProjekcije))
                 .ForMember(x => x.FilmGlumci, options => options.MapFrom(MapFilmGlumci));
 
             CreateMap<Film, FilmVM>()
                 .ForMember(x => x.Zanrovi, options => options.MapFrom(MapFilmZanr))
                  .ForMember(x => x.Kina, options => options.MapFrom(MapFilmKina))
+                 .ForMember(x => x.KinoProjekcije, options => options.MapFrom(MapFilmKinoProjekcija))
                  .ForMember(x => x.Glumci, options => options.MapFrom(MapFilmGlumci));
 
 
@@ -75,6 +79,19 @@ namespace KinoAPI.Helpers
                 foreach (var kino in film.FilmKino)
                 {
                     result.Add(new KinoVM() { id = kino.KinoId, Ime = kino.Kino.Ime, Latitude=kino.Kino.Lokacija.Y,Longitude=kino.Kino.Lokacija.X });
+                }
+            }
+
+            return result;
+        }
+        private List<KinoProjekcijeVM> MapFilmKinoProjekcija(Film film, FilmVM filmVM)
+        {
+            var result = new List<KinoProjekcijeVM>();
+            if (film.FilmKinoProjekcija != null)
+            {
+                foreach (var kinoProjekcija in film.FilmKinoProjekcija)
+                {
+                    result.Add(new KinoProjekcijeVM() { id = kinoProjekcija.KinoProjekcijaId, dan = kinoProjekcija.KinoProjekcija.dan, termin=kinoProjekcija.KinoProjekcija.termin });
                 }
             }
 
@@ -110,6 +127,17 @@ namespace KinoAPI.Helpers
             foreach (var id in filmCreateModel.Kina)
             {
                 result.Add(new FilmKino() { KinoId = id });
+            }
+            return result;
+        }
+
+        private List<FilmKinoProjekcija> MapFilmKinoProjekcije(FilmCreateModel filmCreateModel, Film film)
+        {
+            var result = new List<FilmKinoProjekcija>();
+            if (filmCreateModel.KinoProjekcije == null) { return result; }
+            foreach (var id in filmCreateModel.KinoProjekcije)
+            {
+                result.Add(new FilmKinoProjekcija() { KinoProjekcijaId = id });
             }
             return result;
         }

@@ -1,0 +1,17 @@
+<form  (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Dan*</mat-label>
+        <input formControlName="dan" matInput> 
+        <mat-error *ngIf="form.invalid">{{getErrorMessageFieldName()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Termin*</mat-label>
+        <input formControlName="termin" matInput> 
+        <mat-error *ngIf="form.invalid">{{getErrorMessageFieldName()}}</mat-error>
+    </mat-form-field>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Snimi</button>
+        <a mat-stroked-button routerLink="/zanrovi">Cancel</a>
+    </div>
+    </form>
+

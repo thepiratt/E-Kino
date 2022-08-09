@@ -20,7 +20,7 @@ import{ReactiveFormsModule} from'@angular/forms';
 import { ArtikliDodajComponent } from './artikli/artikli-dodaj/artikli-dodaj.component';
 
 
-import{HttpClientModule} from '@angular/common/http'
+import{HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import{FormsModule} from'@angular/forms';
 import{LeafletModule} from '@asymmetrik/ngx-leaflet'
 
@@ -50,6 +50,18 @@ import { EventiEditComponent } from './eventi/eventi-edit/eventi-edit.component'
 import { EventiFormaComponent } from './eventi/eventi-forma/eventi-forma.component';
 import { EventiIndexComponent } from './eventi/eventi-index/eventi-index.component';
 import { FilmListaComponent } from './filmovi/film-lista/film-lista.component';
+import { ProjekcijaIndexComponent } from './projekcija/projekcija-index/projekcija-index.component';
+import { ProjekcijaFormComponent } from './projekcija/projekcija-form/projekcija-form.component';
+import { ProjekcijaEditComponent } from './projekcija/projekcija-edit/projekcija-edit.component';
+import { ProjekcijaAddComponent } from './projekcija/projekcija-add/projekcija-add.component';
+import { AutorizacijaPregledComponent } from './security/autorizacija-pregled/autorizacija-pregled.component';
+import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
+import { AutorizacijaFormComponent } from './security/autorizacija-form/autorizacija-form.component';
+import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
+import { JwtInterceptorService } from './security/jwt-interceptor.service';
+
+
 
 
 
@@ -99,6 +111,16 @@ import { FilmListaComponent } from './filmovi/film-lista/film-lista.component';
     EventiFormaComponent,
     EventiIndexComponent,
     FilmListaComponent,
+    ProjekcijaIndexComponent,
+    ProjekcijaFormComponent,
+    ProjekcijaEditComponent,
+    ProjekcijaAddComponent,
+    AutorizacijaPregledComponent,
+    LoginComponent,
+    RegisterComponent,
+    AutorizacijaFormComponent,
+    DisplayErrorsComponent
+    
     
     
   
@@ -124,7 +146,11 @@ import { FilmListaComponent } from './filmovi/film-lista/film-lista.component';
     
     
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

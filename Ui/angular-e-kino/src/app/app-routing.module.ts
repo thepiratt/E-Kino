@@ -20,36 +20,50 @@ import { FilmDetaljiComponent } from './filmovi/film-detalji/film-detalji.compon
 import{ EventiIndexComponent } from'./eventi/eventi-index/eventi-index.component'
 import{ EventiDodajComponent } from'./eventi/eventi-dodaj/eventi-dodaj.component'
 import{ EventiEditComponent } from'./eventi/eventi-edit/eventi-edit.component'
+import { ProjekcijaIndexComponent } from './projekcija/projekcija-index/projekcija-index.component';
+import { ProjekcijaAddComponent } from './projekcija/projekcija-add/projekcija-add.component';
+import { ProjekcijaEditComponent } from './projekcija/projekcija-edit/projekcija-edit.component';
+import { IsAdminGuard } from './is-admin.guard';
+import { LoginComponent } from './security/login/login.component';
+import { RegisterComponent } from './security/register/register.component';
 const routes: Routes = [
 
   {path:'',component: HomeComponent},
 
-  {path:'zanrovi',component:ZanrIndexComponent},
-  {path:'zanrovi/napravi',component:ZanrNapraviComponent},
-  {path:'zanrovi/edit/:id',component:ZanrEditComponent},
+  {path:'zanrovi',component:ZanrIndexComponent,canActivate: [IsAdminGuard]},
+  {path:'zanrovi/napravi',component:ZanrNapraviComponent,canActivate: [IsAdminGuard]},
+  {path:'zanrovi/edit/:id',component:ZanrEditComponent,canActivate: [IsAdminGuard]},
 
-  {path:'film',component:FilmDodajComponent},
-  {path:'film/film-edit/:id',component:FilmEditComponent},
+  {path:'projekcije',component:ProjekcijaIndexComponent,canActivate: [IsAdminGuard]},
+  {path:'projekcije/add',component:ProjekcijaAddComponent,canActivate: [IsAdminGuard]},
+  {path:'projekcije/edit/:id',component:ProjekcijaEditComponent,canActivate: [IsAdminGuard]},
+
+  {path:'film',component:FilmDodajComponent,canActivate: [IsAdminGuard]},
+  {path:'film/film-edit/:id',component:FilmEditComponent,canActivate: [IsAdminGuard]},
   {path:'film/film-filter',component:FilmFilterComponent},
   {path:'film/:id',component:FilmDetaljiComponent},
 
   {path:'artikli',component:ArtikliIndexComponent},
-  {path:'artikli/dodaj',component:ArtikliDodajComponent},
-  {path:'artikli/artikli-dodaj/:id',component:ArtikliDodajComponent},
-  {path:'artikli/edit/:id',component:ArtikliEditComponent},
+  {path:'artikli/dodaj',component:ArtikliDodajComponent,canActivate: [IsAdminGuard]},
+  {path:'artikli/artikli-dodaj/:id',component:ArtikliDodajComponent,canActivate: [IsAdminGuard]},
+  {path:'artikli/edit/:id',component:ArtikliEditComponent,canActivate: [IsAdminGuard]},
 
-  {path:'glumci',component:GlumciComponent},
-  {path:'glumci/add',component:GlumciAddComponent},
-  {path:'glumci/edit/:id',component:GlumciEditComponent},
+  {path:'glumci',component:GlumciComponent,canActivate: [IsAdminGuard]},
+  {path:'glumci/add',component:GlumciAddComponent,canActivate: [IsAdminGuard]},
+  {path:'glumci/edit/:id',component:GlumciEditComponent,canActivate: [IsAdminGuard]},
 
-  {path:'kina',component:KinoIndexComponent},
-  {path:'kina/add',component:KinoCreateComponent},
-  {path:'kina/edit/:id',component:KinoEditComponent},
+  {path:'kina',component:KinoIndexComponent,canActivate: [IsAdminGuard]},
+  {path:'kina/add',component:KinoCreateComponent,canActivate: [IsAdminGuard]},
+  {path:'kina/edit/:id',component:KinoEditComponent,canActivate: [IsAdminGuard]},
 
   {path:'eventi',component:EventiIndexComponent},
-  {path:'eventi/dodaj',component:EventiDodajComponent},
-  {path:'eventi/eventi-dodaj/:id',component:EventiDodajComponent},
-  {path:'eventi/edit/:id',component:EventiEditComponent},
+  {path:'eventi/dodaj',component:EventiDodajComponent,canActivate: [IsAdminGuard]},
+  {path:'eventi/eventi-dodaj/:id',component:EventiDodajComponent,canActivate: [IsAdminGuard]},
+  {path:'eventi/edit/:id',component:EventiEditComponent,canActivate: [IsAdminGuard]},
+
+
+  {path:'register',component:RegisterComponent},
+  {path:'login',component:LoginComponent},
 ];
 
 @NgModule({

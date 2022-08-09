@@ -33,5 +33,8 @@ namespace KinoAPI.Models
 
         public List<FilmGlumci> FilmGlumci { get; set; }
 
+
+        public List<FilmKinoProjekcija> FilmKinoProjekcija { get; set; }
+
     }
 }

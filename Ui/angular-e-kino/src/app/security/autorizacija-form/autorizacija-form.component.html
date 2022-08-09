@@ -1,0 +1,20 @@
+<h3>{{action}}</h3>
+<form (submit)="onSubmit.emit(form.value)" [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error>{{getEmailError()}}</mat-error>
+
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Lozinka</mat-label>
+        <input type="password" formControlName="password" matInput>
+        <mat-error>Morate unijeti password</mat-error>
+
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+        {{action}}
+    </button>
+    <a mat-stroked-button routerLink="/">Odustani</a>
+</form>

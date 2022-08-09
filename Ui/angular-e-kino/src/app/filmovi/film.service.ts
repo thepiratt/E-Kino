@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { formatDateFormData } from '../utilities/utils';
-import { filmCreationDTO, filmDTO, filmPostGetDTO, homeDTO } from './model';
+import { filmCreationDTO, filmDTO, filmPostGetDTO, FilmPutGetDTO, homeDTO } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +21,29 @@ export class FilmService {
     return this.http.delete(`${this.apiURL}/${id}`);
   }
 
+  public putGet(id: number): Observable<FilmPutGetDTO>{
+    return this.http.get<FilmPutGetDTO>(`${this.apiURL}/putget/${id}`);
+  }
+
+  public filter(values: any): Observable<any>{
+    const params = new HttpParams({fromObject: values});
+    return this.http.get<filmDTO[]>(`${this.apiURL}/filter`, {params, observe: 'response'});
+  }
+
+  public edit(id: number, filmCreateDTO: filmCreationDTO){
+    const formData = this.BuildFormData(filmCreateDTO);
+    return this.http.put(`${this.apiURL}/${id}`, formData);
+  }
+
 
   public getHomePageMovies(): Observable<homeDTO>{
     return this.http.get<homeDTO>(this.apiURL);
   }
 
-  public create(filmCreationDTO:filmCreationDTO)
+  public create(filmCreationDTO:filmCreationDTO) : Observable<number>
   {
     const formData=this.BuildFormData(filmCreationDTO);
-    return this.http.post(this.apiURL,formData);
+    return this.http.post<number>(this.apiURL,formData);
 
   }
   public getById(id: number): Observable<filmDTO>{
@@ -54,6 +68,8 @@ export class FilmService {
     formData.append('zanrovi', JSON.stringify(film.zanrovi));
     formData.append('kina', JSON.stringify(film.kina));
     formData.append('glumci', JSON.stringify(film.glumci));
+    formData.append('kinoProjekcije', JSON.stringify(film.kinoProjekcije));
+
 
     
 

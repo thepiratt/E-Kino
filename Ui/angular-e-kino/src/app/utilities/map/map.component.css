@@ -4,3 +4,12 @@ div {
     margin-bottom: 1rem;
     position: absolute;
 }
+
+
+#map-mapbox{
+    width: 800px;
+    height: 600px;
+    margin-bottom: 1rem;
+    position: absolute;
+}
+

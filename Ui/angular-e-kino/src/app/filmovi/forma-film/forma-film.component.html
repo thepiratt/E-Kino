@@ -55,6 +55,13 @@
     [SelectedItems]="oznacenaKina"
   ></app-multiple-selector>
 
+  <h4>Odaberite termine projekcije</h4>
+  <app-multiple-selector
+  [NonSelectedItems]="neOznaceniTermini"
+  [SelectedItems]="oznaceniTermini"
+ 
+></app-multiple-selector>
+
   <h4>Odaberite glumce</h4>
 
   <app-glumci-odabir [oznaceniGlumci]="oznaceniGlumci"></app-glumci-odabir>
